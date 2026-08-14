@@ -1,0 +1,636 @@
+/* ================================================================
+   PORTFOLIO v2 — OGBON Moubarack
+   ----------------------------------------------------------------
+   Direction « SaaS clair & chaleureux » : fond blanc cassé chaud,
+   cartes blanches à ombres douces, encre espresso, accent caramel.
+   Sommaire :
+     1. Variables & réglages globaux
+     2. Base & utilitaires (pills, badges, points, boutons)
+     3. Navigation
+     4. Héros + carte « tableau de bord »
+     5. Bande de repères
+     6. Sections & têtes de section
+     7. Compétences (cartes à icônes)
+     8. Approche (étapes numérotées)
+     9. Projets (cartes « fenêtre de navigateur »)
+    10. Parcours (timeline + formation)
+    11. Appel à l'action & pied de page
+    12. Animations d'apparition
+    13. Responsive
+    14. Accessibilité (réduction des animations)
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. VARIABLES & RÉGLAGES GLOBAUX
+   ---------------------------------------------------------------- */
+:root {
+  /* Palette claire et chaude */
+  --fond:          #FBF8F4;   /* blanc cassé chaud */
+  --carte:         #FFFFFF;   /* surfaces */
+  --panneau:       #F4EDE4;   /* sections alternées */
+  --encre:         #221610;   /* texte principal (espresso) */
+  --muted:         #6F6054;   /* texte secondaire */
+  --bord:          #EAE0D4;   /* bordures discrètes */
+  --caramel:       #C9772A;   /* accent chaud */
+  --caramel-fonce: #A05A16;   /* accent lisible en petit corps */
+  --vert:          #2F9E63;   /* statut « en ligne » */
+
+  /* Ombres chaudes, jamais grises */
+  --ombre-douce: 0 10px 30px rgba(34, 22, 16, 0.07);
+  --ombre-forte: 0 22px 50px rgba(34, 22, 16, 0.12);
+
+  /* Typographies */
+  --f-body:    "Plus Jakarta Sans", "Segoe UI", sans-serif;
+  --f-italic:  "Fraunces", Georgia, serif;   /* mots accentués */
+  --f-mono:    "JetBrains Mono", Consolas, monospace;
+
+  --container: 1120px;
+  --nav-h: 76px;
+  --radius: 16px;
+}
+
+/* ----------------------------------------------------------------
+   2. BASE & UTILITAIRES
+   ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--f-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--caramel); color: #fff; }
+
+.container { width: min(var(--container), 92%); margin-inline: auto; }
+
+.mono {
+  font-family: var(--f-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+}
+
+/* Le mot accentué des titres : italique serif caramel,
+   signature typographique de toute la page */
+.accent-italic {
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--caramel);
+}
+
+/* Lien d'évitement (visible au focus clavier uniquement) */
+.skip-link {
+  position: absolute; left: 1rem; top: -3rem;
+  background: var(--encre); color: #fff;
+  padding: 0.5rem 0.9rem; border-radius: 8px;
+  font-family: var(--f-mono); z-index: 200;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 1rem; }
+
+:focus-visible { outline: 2px solid var(--caramel); outline-offset: 3px; border-radius: 6px; }
+
+/* Pastilles d'état */
+.dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.dot--vert    { background: var(--vert); box-shadow: 0 0 0 3px rgba(47, 158, 99, 0.16); }
+.dot--caramel { background: var(--caramel); box-shadow: 0 0 0 3px rgba(201, 119, 42, 0.16); }
+
+/* Badge « pill » du héros */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  box-shadow: var(--ombre-douce);
+}
+
+/* Badges de statut des cartes */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  width: fit-content;
+}
+.badge--vert   { background: rgba(47, 158, 99, 0.1);  color: #22754A; }
+.badge--neutre { background: var(--panneau);          color: var(--muted); }
+.badge--wip    { background: rgba(201, 119, 42, 0.12); color: var(--caramel-fonce); animation: pulse 2.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.6; } }
+
+/* Boutons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.btn--solid {
+  background: var(--encre);
+  color: #fff;
+  box-shadow: var(--ombre-douce);
+}
+.btn--solid:hover { background: var(--caramel); transform: translateY(-2px); box-shadow: var(--ombre-forte); }
+.btn--ghost { border: 1px solid var(--bord); background: var(--carte); }
+.btn--ghost:hover { border-color: var(--caramel); color: var(--caramel-fonce); transform: translateY(-2px); }
+.btn--nav { padding: 0.6rem 1.2rem; font-size: 0.88rem; }
+.btn--clair { background: #fff; color: var(--encre); }
+.btn--clair:hover { transform: translateY(-2px); box-shadow: var(--ombre-forte); }
+.btn--ligne { border: 1px solid rgba(255, 255, 255, 0.35); color: #fff; }
+.btn--ligne:hover { border-color: #fff; transform: translateY(-2px); }
+
+/* ----------------------------------------------------------------
+   3. NAVIGATION
+   ---------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 110;
+  background: rgba(251, 248, 244, 0.85);
+  backdrop-filter: blur(10px);
+  transition: box-shadow 0.3s ease;
+}
+.nav--scrolled { box-shadow: 0 1px 0 var(--bord), var(--ombre-douce); }
+
+.nav__inner {
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+}
+.brand__mark {
+  display: grid;
+  place-items: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--encre);
+  color: var(--caramel);
+  font-family: var(--f-italic);
+  font-size: 0.95rem;
+}
+
+.menu { display: flex; align-items: center; gap: 1.8rem; }
+.menu__link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--muted);
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.25s ease;
+}
+.menu__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 0;
+  border-radius: 2px;
+  background: var(--caramel);
+  transition: width 0.25s ease;
+}
+.menu__link:hover, .menu__link.is-active { color: var(--encre); }
+.menu__link:hover::after, .menu__link.is-active::after { width: 100%; }
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+}
+.burger span { width: 24px; height: 2px; background: var(--encre); transition: transform 0.3s ease, opacity 0.3s ease; }
+.burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.is-open span:nth-child(2) { opacity: 0; }
+.burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ----------------------------------------------------------------
+   4. HÉROS + CARTE « TABLEAU DE BORD »
+   ---------------------------------------------------------------- */
+.hero {
+  padding: calc(var(--nav-h) + clamp(3rem, 8vw, 6rem)) 0 clamp(3rem, 7vw, 5.5rem);
+  /* Halo caramel très léger derrière la carte */
+  background:
+    radial-gradient(680px 420px at 86% 18%, rgba(201, 119, 42, 0.1), transparent 65%);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.hero__title {
+  font-size: clamp(2.3rem, 5.4vw, 3.9rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 1.2rem 0 1.3rem;
+}
+
+.hero__lead { color: var(--muted); max-width: 33rem; font-size: 1.12rem; }
+
+.hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.9rem; }
+
+.hero__note { color: var(--muted); margin-top: 1.6rem; }
+
+/* La carte tableau de bord : clin d'œil aux plateformes que je livre */
+.dash {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--radius);
+  box-shadow: var(--ombre-forte);
+  overflow: hidden;
+  transform: rotate(1.2deg);          /* légère vie, redressée au survol */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.dash:hover { transform: rotate(0deg) translateY(-4px); }
+
+.dash__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: var(--panneau);
+  border-bottom: 1px solid var(--bord);
+  padding: 0.7rem 1rem;
+}
+.dash__dots { display: inline-flex; gap: 6px; }
+.dash__dots i {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--bord);
+}
+.dash__dots i:first-child { background: var(--caramel); }
+.dash__title { color: var(--muted); }
+
+.dash__rows { list-style: none; padding: 1.1rem 1.2rem 0.4rem; }
+.dash__rows li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--bord);
+  font-size: 0.95rem;
+}
+.dash__rows li:last-child { border-bottom: 0; }
+.dash__rows .mono { color: var(--muted); }
+
+.dash__sub { color: var(--muted); padding: 0.7rem 1.2rem 0.3rem; }
+.dash__sites { list-style: none; padding: 0 1.2rem 0.9rem; }
+.dash__sites li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  padding: 0.34rem 0;
+}
+.dash__foot {
+  color: var(--muted);
+  border-top: 1px solid var(--bord);
+  background: var(--panneau);
+  padding: 0.65rem 1.2rem;
+}
+
+/* ----------------------------------------------------------------
+   5. BANDE DE REPÈRES
+   ---------------------------------------------------------------- */
+.strip { border-top: 1px solid var(--bord); border-bottom: 1px solid var(--bord); background: var(--carte); }
+.strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.8rem 2rem;
+  padding: 1rem 0;
+  color: var(--muted);
+}
+.strip__inner span { display: inline-flex; align-items: center; gap: 0.55rem; }
+
+/* ----------------------------------------------------------------
+   6. SECTIONS & TÊTES DE SECTION
+   ---------------------------------------------------------------- */
+.section { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+.section--panel { background: var(--panneau); }
+
+.section-head { max-width: 44rem; margin-bottom: clamp(2.4rem, 5vw, 3.6rem); }
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--caramel-fonce);
+  margin-bottom: 0.7rem;
+}
+.section-head h2 {
+  font-size: clamp(1.9rem, 4.4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+.section-sub { color: var(--muted); margin-top: 0.9rem; }
+
+/* ----------------------------------------------------------------
+   7. COMPÉTENCES — cartes à icônes
+   ---------------------------------------------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.card {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.5rem;
+  box-shadow: var(--ombre-douce);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--ombre-forte); border-color: var(--caramel); }
+
+.card__icon {
+  display: grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(201, 119, 42, 0.1);
+  color: var(--caramel-fonce);
+  margin-bottom: 1rem;
+}
+.card__icon svg { width: 24px; height: 24px; }
+
+.card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 0.4rem; }
+.card p { color: var(--muted); font-size: 0.97rem; }
+
+.tools { margin-top: 2.2rem; color: var(--muted); }
+
+/* ----------------------------------------------------------------
+   8. APPROCHE — étapes numérotées
+   ---------------------------------------------------------------- */
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  counter-reset: etape;
+}
+.step {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.5rem;
+  box-shadow: var(--ombre-douce);
+}
+.step__num {
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--encre);
+  color: var(--caramel);
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+.step h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 0.4rem; }
+.step p { color: var(--muted); font-size: 0.97rem; }
+
+/* ----------------------------------------------------------------
+   9. PROJETS — cartes « fenêtre de navigateur »
+   ---------------------------------------------------------------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--ombre-douce);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.project:hover { transform: translateY(-5px); box-shadow: var(--ombre-forte); border-color: var(--caramel); }
+
+/* La barre supérieure façon navigateur : trois points + domaine */
+.project__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--panneau);
+  border-bottom: 1px solid var(--bord);
+  padding: 0.55rem 0.9rem;
+}
+.project__bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--bord); }
+.project__bar i:first-child { background: var(--caramel); }
+.project__bar .mono { margin-left: 0.5rem; color: var(--muted); font-size: 0.75rem; }
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  flex: 1;
+}
+.project h3 { font-size: 1.18rem; font-weight: 700; }
+.project p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+.project__meta { color: var(--muted); }
+.project__arrow { color: var(--caramel-fonce); display: inline-block; transition: transform 0.25s ease; }
+.project:hover .project__arrow { transform: translate(3px, -3px); }
+
+/* ----------------------------------------------------------------
+   10. PARCOURS — timeline + formation
+   ---------------------------------------------------------------- */
+.timelinewrap {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.timeline { list-style: none; position: relative; padding-left: 1.9rem; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px; top: 8px; bottom: 8px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--bord);
+}
+.tl { position: relative; padding-bottom: 2.1rem; }
+.tl:last-child { padding-bottom: 0; }
+.tl::before {
+  content: "";
+  position: absolute;
+  left: -1.9rem; top: 7px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--carte);
+  border: 3px solid var(--caramel);
+}
+.tl__date { color: var(--caramel-fonce); }
+.tl h3 { font-size: 1.2rem; font-weight: 700; margin: 0.2rem 0 0.05rem; }
+.tl__org { font-size: 0.95rem; font-weight: 500; }
+.tl__desc { color: var(--muted); font-size: 0.96rem; margin-top: 0.3rem; }
+
+/* Formation : carte latérale */
+.degrees {
+  background: var(--carte);
+  border: 1px solid var(--bord);
+  border-radius: var(--radius);
+  box-shadow: var(--ombre-douce);
+  padding: 1.4rem 1.4rem 0.6rem;
+}
+.degrees__head {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--caramel-fonce);
+  margin-bottom: 0.7rem;
+}
+.degrees ul { list-style: none; }
+.degrees li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.85rem 0;
+  border-top: 1px dashed var(--bord);
+}
+.degrees li span { color: var(--muted); font-size: 0.92rem; }
+.degrees li .mono { color: var(--caramel-fonce); }
+
+/* ----------------------------------------------------------------
+   11. APPEL À L'ACTION & PIED DE PAGE
+   ---------------------------------------------------------------- */
+.cta { padding: clamp(4.5rem, 9vw, 7.5rem) 0; }
+.cta__box {
+  background: var(--encre);
+  color: #fff;
+  border-radius: 24px;
+  padding: clamp(2.6rem, 6vw, 4.2rem);
+  text-align: center;
+  box-shadow: var(--ombre-forte);
+  /* Halo caramel dans l'angle : rappel discret de l'identité */
+  background-image: radial-gradient(520px 320px at 88% 0%, rgba(201, 119, 42, 0.35), transparent 60%);
+}
+.cta__box h2 {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+.cta__box > p { color: rgba(255, 255, 255, 0.75); max-width: 34rem; margin: 1rem auto 0; }
+.cta__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+.cta__tel { color: rgba(255, 255, 255, 0.6); margin-top: 1.8rem; }
+
+.footer { border-top: 1px solid var(--bord); padding: 1.7rem 0; background: var(--carte); }
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer__nav { display: flex; gap: 1.4rem; }
+.footer__nav a { color: var(--muted); transition: color 0.2s ease; }
+.footer__nav a:hover { color: var(--caramel-fonce); }
+.footer__copy { color: var(--muted); }
+
+/* ----------------------------------------------------------------
+   12. ANIMATIONS D'APPARITION (pilotées par jQuery)
+   ---------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--dl, 0ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+/* Cas particulier : la carte tableau de bord garde sa rotation */
+.dash.reveal { transform: translateY(22px) rotate(1.2deg); }
+.dash.reveal.is-visible { transform: rotate(1.2deg); }
+.dash.reveal.is-visible:hover { transform: rotate(0deg) translateY(-4px); }
+
+/* ----------------------------------------------------------------
+   13. RESPONSIVE
+   ---------------------------------------------------------------- */
+@media (max-width: 980px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .dash { max-width: 460px; }
+  .cards, .steps, .projects { grid-template-columns: repeat(2, 1fr); }
+  .timelinewrap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 660px) {
+  .burger { display: flex; z-index: 130; }
+  .menu {
+    position: fixed;
+    inset: 0;
+    background: rgba(251, 248, 244, 0.98);
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateY(-102%);
+    transition: transform 0.4s ease;
+  }
+  .menu.is-open { transform: none; }
+  .menu__link { font-size: 1.15rem; }
+
+  .cards, .steps, .projects { grid-template-columns: 1fr; }
+  .strip__inner { justify-content: flex-start; }
+  .footer__inner { flex-direction: column; text-align: center; }
+}
+
+/* ----------------------------------------------------------------
+   14. ACCESSIBILITÉ — réduction des animations
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal, .dash.reveal { opacity: 1; transform: none; }
+}

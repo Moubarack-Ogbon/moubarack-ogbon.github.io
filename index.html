@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- ============================================================
+       PORTFOLIO v2 — OGBON Moubarack · Développeur Full-Stack Laravel
+       ------------------------------------------------------------
+       Direction : « landing SaaS » claire et chaleureuse, dans
+       l'esprit des plateformes que je construis (badge, titre à
+       mot accentué, carte tableau de bord, grille d'atouts,
+       étapes numérotées, grand appel à l'action).
+       Polices : Plus Jakarta Sans (texte) · Fraunces (mots accentués)
+                 · JetBrains Mono (étiquettes techniques).
+       JS : jQuery uniquement (voir js/main.js).
+       ============================================================ -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ogbon Moubarack — Développeur Full-Stack Laravel</title>
+  <meta name="description" content="Développeur full-stack Laravel à Abidjan. Plateformes web en production, APIs REST sécurisées, formation de développeurs. Disponible en freelance.">
+  <meta name="theme-color" content="#FBF8F4">
+
+  <!-- Favicon : monogramme « OM » en SVG embarqué -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23221610'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%23C9772A' text-anchor='middle'%3EOM%3C/text%3E%3C/svg%3E">
+
+  <!-- Polices Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Lien d'évitement (accessibilité clavier) -->
+  <a class="skip-link" href="#competences">Aller au contenu</a>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav" id="haut">
+    <div class="container nav__inner">
+      <a class="brand" href="#haut" aria-label="Retour en haut — Ogbon Moubarack">
+        <span class="brand__mark">OM</span> Ogbon&nbsp;Moubarack
+      </a>
+
+      <nav class="menu" id="menu" aria-label="Navigation principale">
+        <a class="menu__link" href="#competences">Compétences</a>
+        <a class="menu__link" href="#approche">Approche</a>
+        <a class="menu__link" href="#projets">Projets</a>
+        <a class="menu__link" href="#parcours">Parcours</a>
+        <a class="btn btn--solid btn--nav" href="#contact">Me contacter</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HÉROS — pitch + carte « tableau de bord » du profil
+         ============================================================ -->
+    <section class="hero">
+      <div class="container hero__grid">
+
+        <!-- Colonne texte -->
+        <div class="hero__copy">
+          <p class="pill reveal"><span class="dot dot--vert"></span> Disponible en freelance — Abidjan</p>
+
+          <h1 class="hero__title reveal" data-delay="70">
+            Des plateformes web fiables,<br>
+            de l’idée à la <em class="accent-italic">production</em>.
+          </h1>
+
+          <p class="hero__lead reveal" data-delay="140">
+            Développeur full-stack Laravel, je conçois, livre et maintiens
+            des applications utilisées au quotidien — sites d’entreprise,
+            outils métiers et produits SaaS.
+          </p>
+
+          <div class="hero__cta reveal" data-delay="210">
+            <a class="btn btn--solid" href="#projets">Voir mes projets</a>
+            <a class="btn btn--ghost" href="#contact">Me contacter</a>
+          </div>
+
+          <p class="hero__note mono reveal" data-delay="280">
+            Laravel · MySQL · Bootstrap · jQuery/AJAX · APIs REST
+          </p>
+        </div>
+
+        <!-- Carte « tableau de bord » : mon profil présenté comme
+             un produit — clin d'œil aux plateformes que je développe -->
+        <aside class="dash reveal" data-delay="180" aria-label="Aperçu du profil">
+          <div class="dash__bar">
+            <span class="dash__dots"><i></i><i></i><i></i></span>
+            <span class="mono dash__title">profil — ogbon.moubarack</span>
+          </div>
+
+          <ul class="dash__rows">
+            <li><span class="mono">Statut</span><span class="badge badge--vert"><span class="dot dot--vert"></span> Disponible</span></li>
+            <li><span class="mono">Rôle</span><span>Développeur Full-Stack Laravel</span></li>
+            <li><span class="mono">Base</span><span>Abidjan — Côte d’Ivoire</span></li>
+            <li><span class="mono">Aussi</span><span>Formateur chez CLC</span></li>
+          </ul>
+
+          <p class="mono dash__sub">Plateformes en ligne</p>
+          <ul class="dash__sites">
+            <li><span class="dot dot--vert"></span> jomion.net</li>
+            <li><span class="dot dot--vert"></span> ochurch.net</li>
+            <li><span class="dot dot--vert"></span> controlplus.net</li>
+            <li><span class="dot dot--vert"></span> wilson-groupservice.com</li>
+          </ul>
+
+          <p class="dash__foot mono">Suivies et maintenues en continu</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Bande de repères (aucun chiffre : des faits) -->
+    <div class="strip">
+      <div class="container strip__inner mono">
+        <span><span class="dot dot--caramel"></span> En activité depuis 2022</span>
+        <span><span class="dot dot--caramel"></span> Freelance &amp; missions</span>
+        <span><span class="dot dot--caramel"></span> Code propre — standards PSR</span>
+        <span><span class="dot dot--caramel"></span> Formation &amp; transmission</span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         COMPÉTENCES — grille d'atouts avec icônes
+         ============================================================ -->
+    <section class="section" id="competences">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Compétences</p>
+          <h2>Tout ce qu’il faut pour livrer<br>une application <em class="accent-italic">complète</em></h2>
+          <p class="section-sub">Six domaines travaillés au quotidien, du serveur à l’interface — et jusqu’à la transmission.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+            </span>
+            <h3>Back-end</h3>
+            <p>PHP &amp; Laravel — Blade, Eloquent, logique métier robuste côté serveur.</p>
+          </article>
+
+          <article class="card reveal" data-delay="60">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>
+            </span>
+            <h3>Front-end</h3>
+            <p>HTML5, CSS3, Bootstrap, jQuery/AJAX — des interfaces vives et responsives.</p>
+          </article>
+
+          <article class="card reveal" data-delay="120">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+            </span>
+            <h3>Bases de données</h3>
+            <p>MySQL — modélisation Merise, requêtes optimisées, indexation.</p>
+          </article>
+
+          <article class="card reveal" data-delay="180">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>
+            </span>
+            <h3>Architecture</h3>
+            <p>MVC, Repository Pattern, standards PSR — un code lisible et durable.</p>
+          </article>
+
+          <article class="card reveal" data-delay="240">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><path d="M8 12h8"/></svg>
+            </span>
+            <h3>APIs</h3>
+            <p>Conception REST, sécurisation des échanges, intégrations tierces.</p>
+          </article>
+
+          <article class="card reveal" data-delay="300">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 5-10 5L2 8l10-5Z"/><path d="M6 10.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5"/><path d="M22 8v6"/></svg>
+            </span>
+            <h3>Pédagogie</h3>
+            <p>Formation et vulgarisation technique auprès d’apprenants développeurs.</p>
+          </article>
+        </div>
+
+        <p class="tools mono reveal">Outils quotidiens — Git · VS&nbsp;Code · Postman · Composer · Trello</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPROCHE — trois étapes numérotées
+         ============================================================ -->
+    <section class="section section--panel" id="approche">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Approche</p>
+          <h2>Une méthode simple,<br>qui va jusqu’au <em class="accent-italic">bout</em></h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">1</span>
+            <h3>Cadrer</h3>
+            <p>Comprendre le besoin réel, définir le périmètre et modéliser les données avant d’écrire la moindre ligne.</p>
+          </li>
+          <li class="step reveal" data-delay="80">
+            <span class="step__num">2</span>
+            <h3>Construire</h3>
+            <p>Développer proprement — architecture MVC, APIs sécurisées, interfaces dynamiques — avec des points d’étape réguliers.</p>
+          </li>
+          <li class="step reveal" data-delay="160">
+            <span class="step__num">3</span>
+            <h3>Mettre en production</h3>
+            <p>Déployer, suivre, corriger, faire évoluer. Une application n’est terminée que lorsqu’elle tourne et qu’on peut compter sur elle.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROJETS — cartes façon fenêtre de navigateur
+         ============================================================ -->
+    <section class="section" id="projets">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Projets</p>
+          <h2>En ligne, utilisés<br><em class="accent-italic">au quotidien</em></h2>
+          <p class="section-sub">Cliquez : ces plateformes sont réelles, déployées et accessibles.</p>
+        </header>
+
+        <div class="projects">
+
+          <a class="project reveal" href="https://ochurch.net" target="_blank" rel="noopener">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">ochurch.net</span></span>
+            <div class="project__body">
+              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
+              <h3>O’Church</h3>
+              <p>Plateforme SaaS de gestion d’église — membres, finances, présences, SMS.</p>
+              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
+            </div>
+          </a>
+
+          <a class="project reveal" data-delay="60" href="https://jomion.net" target="_blank" rel="noopener">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">jomion.net</span></span>
+            <div class="project__body">
+              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
+              <h3>Jomion</h3>
+              <p>Plateforme web développée et mise en production pour ODAM Consulting.</p>
+              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
+            </div>
+          </a>
+
+          <a class="project reveal" data-delay="120" href="https://controlplus.net" target="_blank" rel="noopener">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">controlplus.net</span></span>
+            <div class="project__body">
+              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
+              <h3>ControlPlus</h3>
+              <p>Plateforme web développée et mise en production pour ODAM Consulting.</p>
+              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
+            </div>
+          </a>
+
+          <a class="project reveal" data-delay="180" href="https://wilson-groupservice.com" target="_blank" rel="noopener">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">wilson-groupservice.com</span></span>
+            <div class="project__body">
+              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
+              <h3>Wilson Group Service</h3>
+              <p>Site institutionnel développé et mis en ligne pour ODAM Consulting.</p>
+              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
+            </div>
+          </a>
+
+          <article class="project reveal" data-delay="240">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">fsmi</span></span>
+            <div class="project__body">
+              <span class="badge badge--neutre">Livré</span>
+              <h3>FSMI</h3>
+              <p>Projet web développé et livré dans le cadre de mes missions ODAM Consulting.</p>
+              <p class="mono project__meta">Laravel · MySQL</p>
+            </div>
+          </article>
+
+          <article class="project reveal" data-delay="300">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">barakadeal</span></span>
+            <div class="project__body">
+              <span class="badge badge--neutre">Produit personnel</span>
+              <h3>BarakaDeal</h3>
+              <p>Application web conçue et développée de A à Z, en autonomie complète.</p>
+              <p class="mono project__meta">Application web</p>
+            </div>
+          </article>
+
+          <article class="project reveal" data-delay="360">
+            <span class="project__bar"><i></i><i></i><i></i><span class="mono">signalert</span></span>
+            <div class="project__body">
+              <span class="badge badge--wip"><span class="dot dot--caramel"></span> En cours de développement</span>
+              <h3>SignAlert</h3>
+              <p>Application web personnelle actuellement en construction.</p>
+              <p class="mono project__meta">Application web</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PARCOURS — expérience & formation
+         ============================================================ -->
+    <section class="section section--panel" id="parcours">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Parcours</p>
+          <h2>Expérience<br>&amp; <em class="accent-italic">formation</em></h2>
+        </header>
+
+        <div class="timelinewrap">
+          <ol class="timeline">
+            <li class="tl reveal">
+              <p class="mono tl__date">juil. 2026 — aujourd’hui</p>
+              <h3>Consultant en informatique</h3>
+              <p class="tl__org">CLC – Cadryl’s Learning Center · Abidjan (hybride)</p>
+              <p class="tl__desc">Applications web complètes, conception de logiciels, encadrement d’apprenants développeurs, animation de communauté.</p>
+            </li>
+            <li class="tl reveal" data-delay="70">
+              <p class="mono tl__date">2026 — aujourd’hui</p>
+              <h3>Développeur full-stack</h3>
+              <p class="tl__org">ODAM Consulting · Abidjan</p>
+              <p class="tl__desc">Sites et plateformes sur mesure, de la mise en production à la maintenance évolutive, avec un suivi client direct.</p>
+            </li>
+            <li class="tl reveal" data-delay="140">
+              <p class="mono tl__date">janv. 2023 — juil. 2025</p>
+              <h3>Développeur full-stack Laravel</h3>
+              <p class="tl__org">Biwari · Abidjan</p>
+              <p class="tl__desc">Applications web d’entreprise&nbsp;; APIs REST sécurisées et optimisation des bases de données.</p>
+            </li>
+            <li class="tl reveal" data-delay="210">
+              <p class="mono tl__date">juil. 2022 — janv. 2023</p>
+              <h3>Stagiaire développeur web</h3>
+              <p class="tl__org">Dinamik Lab · Abidjan</p>
+              <p class="tl__desc">Premiers projets en équipe&nbsp;: fonctionnalités, correctifs et versionnement du code avec Git.</p>
+            </li>
+          </ol>
+
+          <aside class="degrees reveal" data-delay="120">
+            <p class="mono degrees__head">Formation</p>
+            <ul>
+              <li>
+                <strong>Licence professionnelle — Génie Logiciel</strong>
+                <span>ITES – Institut de Technologies et Spécialités, Abidjan</span>
+                <span class="mono">2021 – 2022</span>
+              </li>
+              <li>
+                <strong>BTS — Informatique, Développeur d’Applications</strong>
+                <span>ITES – Institut de Technologies et Spécialités, Abidjan</span>
+                <span class="mono">2021 – 2022</span>
+              </li>
+              <li>
+                <strong>Baccalauréat — Série D</strong>
+                <span>Groupe Scolaire Nadreau La Source, Abidjan</span>
+                <span class="mono">2018 – 2019</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         APPEL À L'ACTION FINAL + CONTACT
+         ============================================================ -->
+    <section class="cta" id="contact">
+      <div class="container cta__box reveal">
+        <h2>Prêt à lancer<br>votre <em class="accent-italic">projet</em>&nbsp;?</h2>
+        <p>Une plateforme à construire, un site à moderniser ou une équipe à former&nbsp;— parlons-en, je réponds vite.</p>
+
+        <div class="cta__actions">
+          <a class="btn btn--clair" href="mailto:moubarackogbon2018@gmail.com">moubarackogbon2018@gmail.com</a>
+          <a class="btn btn--ligne" href="https://www.linkedin.com/in/moubarack-ogbon-12202124a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+
+        <p class="cta__tel mono">
+          +225&nbsp;05&nbsp;74&nbsp;38&nbsp;81&nbsp;10&nbsp;&nbsp;·&nbsp;&nbsp;+225&nbsp;01&nbsp;43&nbsp;18&nbsp;07&nbsp;69&nbsp;&nbsp;·&nbsp;&nbsp;Abobo, Abidjan — Côte d’Ivoire
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       PIED DE PAGE
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="brand" href="#haut"><span class="brand__mark">OM</span> Ogbon&nbsp;Moubarack</a>
+      <nav class="footer__nav mono" aria-label="Navigation pied de page">
+        <a href="#competences">Compétences</a>
+        <a href="#approche">Approche</a>
+        <a href="#projets">Projets</a>
+        <a href="#parcours">Parcours</a>
+      </nav>
+      <p class="mono footer__copy">© <span id="annee">2026</span> Ogbon Moubarack — Abidjan</p>
+    </div>
+  </footer>
+
+  <!-- Scripts : jQuery (local) puis la logique du site -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
