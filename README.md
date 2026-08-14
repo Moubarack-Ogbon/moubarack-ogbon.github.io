@@ -1,4 +1,4 @@
-# Portfolio v2 — Ogbon Moubarack
+# Portfolio — Ogbon Moubarack
 
 Portfolio professionnel : style « SaaS clair & chaleureux » (blanc cassé, encre espresso, caramel),
 typographies Plus Jakarta Sans / Fraunces / JetBrains Mono, animations sobres.
