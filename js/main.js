@@ -1,155 +1,89 @@
 /* ================================================================
-   PORTFOLIO v2 — OGBON Moubarack · Logique du site (100 % jQuery)
+   PORTFOLIO v3 — logique (JavaScript natif, sans dépendance)
    ----------------------------------------------------------------
-   Sommaire :
-     1. Préparation & utilitaires
-     2. État de la navigation au défilement
-     3. Menu mobile (burger)
-     4. Défilement fluide vers les ancres
-     5. Apparition des éléments au défilement (.reveal)
-     6. Lien de navigation actif (scroll-spy)
-     7. Divers (année du pied de page)
+     1. En-tête au défilement
+     2. Menu mobile
+     3. Années d'expérience (calculées depuis 2022)
+     4. Apparition au défilement + compteurs animés
+     5. Lien actif dans le menu
+     6. Année du pied de page
    ================================================================ */
-
-(function ($) {
+(function () {
   "use strict";
 
-  $(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var header = document.querySelector(".header");
+  var burger = document.getElementById("burger");
+  var mmenu = document.getElementById("mobile-menu");
 
-    /* ------------------------------------------------------------
-       1. PRÉPARATION & UTILITAIRES
-       ------------------------------------------------------------ */
-    var $window   = $(window);
-    var $document = $(document);
-    var $nav      = $(".nav");
-    var $menu     = $("#menu");
-    var $burger   = $("#burger");
-    var $reveals  = $(".reveal");
-    var $sections = $("section[id]");
-    var $links    = $(".menu__link");
+  /* 1. EN-TÊTE ----------------------------------------------------- */
+  function onScroll() { header.setAttribute("data-scrolled", window.scrollY > 10 ? "true" : "false"); }
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
-    // L'utilisateur préfère-t-il limiter les animations ? (accessibilité)
-    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* 2. MENU MOBILE ------------------------------------------------- */
+  function setMenu(open) {
+    mmenu.setAttribute("data-open", open ? "true" : "false");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+    burger.querySelector(".sr").textContent = open ? "Fermer le menu" : "Ouvrir le menu";
+  }
+  burger.addEventListener("click", function () { setMenu(mmenu.getAttribute("data-open") !== "true"); });
+  mmenu.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && mmenu.getAttribute("data-open") === "true") { setMenu(false); burger.focus(); }
+  });
+  window.addEventListener("resize", function () { if (window.innerWidth >= 1024) setMenu(false); });
 
-    /**
-     * Un seul gestionnaire de défilement, cadencé par
-     * requestAnimationFrame pour rester parfaitement fluide.
-     */
-    var ticking = false;
-    function onScroll() {
-      if (ticking) { return; }
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        var y = $window.scrollTop();
-        updateNavState(y);
-        updateReveals();
-        updateActiveLink(y);
-        ticking = false;
-      });
-    }
-
-    $window.on("scroll resize", onScroll);
-
-    /* ------------------------------------------------------------
-       2. ÉTAT DE LA NAVIGATION
-       ------------------------------------------------------------
-       Dès que l'on quitte le sommet, la barre gagne une ombre
-       douce qui la détache du contenu (voir le CSS).              */
-    function updateNavState(y) {
-      $nav.toggleClass("nav--scrolled", y > 16);
-    }
-
-    /* ------------------------------------------------------------
-       3. MENU MOBILE (BURGER)
-       ------------------------------------------------------------ */
-    $burger.on("click", function () {
-      var open = $menu.toggleClass("is-open").hasClass("is-open");
-      $(this)
-        .toggleClass("is-open", open)
-        .attr("aria-expanded", open)
-        .attr("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
-    });
-
-    // Un clic sur un lien (ou le bouton contact) referme le panneau.
-    $menu.find("a").on("click", function () {
-      $menu.removeClass("is-open");
-      $burger.removeClass("is-open").attr("aria-expanded", "false");
-    });
-
-    /* ------------------------------------------------------------
-       4. DÉFILEMENT FLUIDE VERS LES ANCRES
-       ------------------------------------------------------------
-       jQuery anime le scroll avec un décalage égal à la hauteur
-       de la barre de navigation fixe.                             */
-    $document.on("click", 'a[href^="#"]', function (event) {
-      var cible = $(this.getAttribute("href"));
-      if (!cible.length) { return; }
-
-      event.preventDefault();
-
-      var destination = Math.max(cible.offset().top - 70, 0);
-
-      if (reduceMotion) {
-        $window.scrollTop(destination);      // saut direct si demandé
-      } else {
-        $("html, body").stop(true).animate({ scrollTop: destination }, 620, "swing");
-      }
-    });
-
-    /* ------------------------------------------------------------
-       5. APPARITION DES ÉLÉMENTS AU DÉFILEMENT
-       ------------------------------------------------------------
-       Chaque .reveal glisse en place quand il entre dans l'écran.
-       L'attribut data-delay (en ms) crée de légères cascades,
-       transmis au CSS via la variable --dl.                       */
-    $reveals.each(function () {
-      var delay = $(this).data("delay");
-      if (delay) {
-        this.style.setProperty("--dl", delay + "ms");
-      }
-    });
-
-    function updateReveals() {
-      var bas = $window.scrollTop() + $window.height() * 0.88;
-
-      $reveals.not(".is-visible").each(function () {
-        var $el = $(this);
-        if ($el.offset().top < bas) {
-          $el.addClass("is-visible");
-        }
-      });
-    }
-
-    /* ------------------------------------------------------------
-       6. LIEN DE NAVIGATION ACTIF (SCROLL-SPY)
-       ------------------------------------------------------------
-       Le lien du menu correspondant à la section visible reçoit
-       la classe .is-active (soulignement caramel).                */
-    function updateActiveLink(y) {
-      var repere = y + 150;
-      var actifId = "";
-
-      $sections.each(function () {
-        if ($(this).offset().top <= repere) {
-          actifId = this.id;
-        }
-      });
-
-      $links.each(function () {
-        var vise = this.getAttribute("href") === "#" + actifId;
-        $(this).toggleClass("is-active", vise);
-      });
-    }
-
-    /* ------------------------------------------------------------
-       7. DIVERS
-       ------------------------------------------------------------ */
-    // Année du pied de page toujours à jour.
-    $("#annee").text(new Date().getFullYear());
-
-    // Premier calcul au chargement (avant tout défilement).
-    onScroll();
-    updateReveals();
+  /* 3. ANNÉES D'EXPÉRIENCE ---------------------------------------- */
+  var years = Math.max(1, new Date().getFullYear() - 2022);
+  document.querySelectorAll("[data-years]").forEach(function (el) {
+    el.textContent = years;
+    if (el.hasAttribute("data-count")) el.setAttribute("data-count", years);
   });
 
-})(jQuery);
+  /* 4. APPARITION + COMPTEURS ------------------------------------- */
+  function countUp(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    if (reduce || target === 0) { el.textContent = target; return; }
+    var start = null, dur = 1400;
+    function tick(t) {
+      if (!start) start = t;
+      var p = Math.min(1, (t - start) / dur);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var blocks = document.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        en.target.querySelectorAll("[data-count]").forEach(countUp);
+        io.unobserve(en.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.1 });
+    blocks.forEach(function (b) { io.observe(b); });
+  } else {
+    blocks.forEach(function (b) { b.classList.add("in"); });
+  }
+
+  /* 5. LIEN ACTIF -------------------------------------------------- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav__a, .mmenu__nav a:not(.btn)"));
+  var ids = ["apropos", "realisations", "competences", "parcours"];
+  if ("IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + en.target.id); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    ids.forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
+  }
+
+  /* 6. ANNÉE ------------------------------------------------------- */
+  var y = document.getElementById("annee");
+  if (y) y.textContent = new Date().getFullYear();
+})();

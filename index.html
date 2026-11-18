@@ -2,391 +2,568 @@
 <html lang="fr">
 <head>
   <!-- ============================================================
-       PORTFOLIO v2 — OGBON Moubarack · Développeur Full-Stack Laravel
+       PORTFOLIO v3 — OGBON Moubarack · Développeur full-stack
        ------------------------------------------------------------
-       Direction : « landing SaaS » claire et chaleureuse, dans
-       l'esprit des plateformes que je construis (badge, titre à
-       mot accentué, carte tableau de bord, grille d'atouts,
-       étapes numérotées, grand appel à l'action).
-       Polices : Plus Jakarta Sans (texte) · Fraunces (mots accentués)
-                 · JetBrains Mono (étiquettes techniques).
-       JS : jQuery uniquement (voir js/main.js).
+       Design repris de fondation-fsa-ci.org (réalisé par moi) :
+       framboise #c42558 + or #EEAB26, fonds blush/crème,
+       Poppins (titres extra-gras) + Shadows Into Light (accents
+       « écrits à la main »), trait de crayon doré sous les mots clés,
+       cartes qui chevauchent le héros, bandeau défilant, bande de
+       chiffres sombre, badges flottants.
+       CSS pur, JS natif — hébergeable sur GitHub Pages.
        ============================================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ogbon Moubarack — Développeur Full-Stack Laravel</title>
-  <meta name="description" content="Développeur full-stack Laravel à Abidjan. Plateformes web en production, APIs REST sécurisées, formation de développeurs. Disponible en freelance.">
-  <meta name="theme-color" content="#FBF8F4">
+  <title>Ogbon Moubarack — Développeur Full-Stack</title>
+  <meta name="description" content="Développeur full-stack à Abidjan. 10 plateformes en production : SaaS, gestion commerciale, sites institutionnels. Laravel, Flutter, APIs REST.">
+  <meta name="theme-color" content="#0b1730">
 
-  <!-- Favicon : monogramme « OM » en SVG embarqué -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23221610'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' font-weight='700' fill='%23C9772A' text-anchor='middle'%3EOM%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%231f4fd1'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='800' font-size='24' fill='%23ffffff' text-anchor='middle'%3EOM%3C/text%3E%3C/svg%3E">
 
-  <!-- Polices Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Shadows+Into+Light&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
-  <!-- Lien d'évitement (accessibilité clavier) -->
-  <a class="skip-link" href="#competences">Aller au contenu</a>
+  <!-- Sprite d'icônes (traits 1.8, style Lucide) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
+      <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2M15 7h2a5 5 0 1 1 0 10h-2M8 12h8"/></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></symbol>
+      <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2Z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+      <symbol id="i-grad" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5Z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8Z"/></symbol>
+      <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-out" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-hammer" viewBox="0 0 24 24"><path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9"/><path d="M17.64 15 22 10.64M20.91 11.7l-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#apropos">Aller au contenu</a>
 
   <!-- ============================================================
-       NAVIGATION
+       BARRE SUPÉRIEURE (grand écran)
        ============================================================ -->
-  <header class="nav" id="haut">
-    <div class="container nav__inner">
-      <a class="brand" href="#haut" aria-label="Retour en haut — Ogbon Moubarack">
-        <span class="brand__mark">OM</span> Ogbon&nbsp;Moubarack
+  <div class="topbar">
+    <div class="wrap topbar__in">
+      <div class="topbar__group">
+        <a href="tel:+2250574388110"><svg class="ic"><use href="#i-phone"/></svg> +225 05 74 38 81 10</a>
+        <a href="mailto:moubarackogbon2018@gmail.com"><svg class="ic"><use href="#i-mail"/></svg> moubarackogbon2018@gmail.com</a>
+      </div>
+      <div class="topbar__group">
+        <span class="hand topbar__slogan">#Du code qui tourne en production</span>
+        <a href="https://www.linkedin.com/in/moubarack-ogbon-12202124a/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-linkedin"/></svg> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EN-TÊTE
+       ============================================================ -->
+  <header class="header" id="haut" data-scrolled="false">
+    <div class="wrap header__in">
+      <a class="brand" href="#haut" aria-label="Ogbon Moubarack — haut de page">
+        <span class="brand__mark">OM</span>
+        <span class="brand__txt">
+          <span class="brand__kicker">Développeur full-stack</span>
+          <span class="brand__name">Ogbon <span>Moubarack</span></span>
+        </span>
       </a>
 
-      <nav class="menu" id="menu" aria-label="Navigation principale">
-        <a class="menu__link" href="#competences">Compétences</a>
-        <a class="menu__link" href="#approche">Approche</a>
-        <a class="menu__link" href="#projets">Projets</a>
-        <a class="menu__link" href="#parcours">Parcours</a>
-        <a class="btn btn--solid btn--nav" href="#contact">Me contacter</a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="nav__a" href="#apropos">À propos</a>
+        <a class="nav__a" href="#realisations">Réalisations</a>
+        <a class="nav__a" href="#competences">Compétences</a>
+        <a class="nav__a" href="#parcours">Parcours</a>
       </nav>
 
-      <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header__end">
+        <a class="btn btn--primary btn--sm header__cta" href="#contact">Me contacter</a>
+        <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="sr">Ouvrir le menu</span>
+          <svg class="ic burger__open"><use href="#i-menu"/></svg>
+          <svg class="ic burger__close"><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu mobile : hauteur animée via grid-template-rows -->
+    <div class="mmenu" id="mobile-menu" data-open="false">
+      <div>
+        <nav class="wrap mmenu__nav" aria-label="Navigation mobile">
+          <a href="#apropos" style="--i:0">À propos</a>
+          <a href="#realisations" style="--i:1">Réalisations</a>
+          <a href="#competences" style="--i:2">Compétences</a>
+          <a href="#parcours" style="--i:3">Parcours</a>
+          <a class="btn btn--primary" href="#contact" style="--i:4">Me contacter</a>
+        </nav>
+      </div>
     </div>
   </header>
 
   <main>
 
     <!-- ============================================================
-         HÉROS — pitch + carte « tableau de bord » du profil
+         HÉROS
          ============================================================ -->
     <section class="hero">
-      <div class="container hero__grid">
+      <div class="blob blob--pink" aria-hidden="true"></div>
+      <div class="blob blob--gold" aria-hidden="true"></div>
+      <svg class="hero__deco" aria-hidden="true"><use href="#i-code"/></svg>
 
-        <!-- Colonne texte -->
+      <div class="wrap hero__in">
         <div class="hero__copy">
-          <p class="pill reveal"><span class="dot dot--vert"></span> Disponible en freelance — Abidjan</p>
-
-          <h1 class="hero__title reveal" data-delay="70">
-            Des plateformes web fiables,<br>
-            de l’idée à la <em class="accent-italic">production</em>.
-          </h1>
-
-          <p class="hero__lead reveal" data-delay="140">
-            Développeur full-stack Laravel, je conçois, livre et maintiens
-            des applications utilisées au quotidien — sites d’entreprise,
-            outils métiers et produits SaaS.
+          <p class="eyebrow rv">Développeur full-stack · Abidjan</p>
+          <h1 class="hero__title rv" style="--d:1">Des logiciels qui <span class="scribble">tournent</span></h1>
+          <p class="hand hero__hand rv" style="--d:2">#De l’idée à la production</p>
+          <p class="hero__lead rv" style="--d:3">
+            Je conçois, développe, déploie et maintiens des plateformes web et mobiles
+            utilisées chaque jour par des entreprises, des institutions et des organisations
+            en Côte d’Ivoire.
           </p>
-
-          <div class="hero__cta reveal" data-delay="210">
-            <a class="btn btn--solid" href="#projets">Voir mes projets</a>
-            <a class="btn btn--ghost" href="#contact">Me contacter</a>
+          <div class="hero__cta rv" style="--d:4">
+            <a class="btn btn--primary" href="#realisations">Voir mes réalisations <svg class="ic"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--outline" href="#contact">Me contacter <svg class="ic"><use href="#i-out"/></svg></a>
           </div>
-
-          <p class="hero__note mono reveal" data-delay="280">
-            Laravel · MySQL · Bootstrap · jQuery/AJAX · APIs REST
-          </p>
         </div>
 
-        <!-- Carte « tableau de bord » : mon profil présenté comme
-             un produit — clin d'œil aux plateformes que je développe -->
-        <aside class="dash reveal" data-delay="180" aria-label="Aperçu du profil">
-          <div class="dash__bar">
-            <span class="dash__dots"><i></i><i></i><i></i></span>
-            <span class="mono dash__title">profil — ogbon.moubarack</span>
+        <div class="hero__vis rv" style="--d:2">
+          <div class="hero__bg" aria-hidden="true"></div>
+
+          <div class="board">
+            <div class="board__head">
+              <span class="board__title">Plateformes en ligne</span>
+              <span class="pill-live"><span class="dot"></span> En production</span>
+            </div>
+            <ul class="board__list">
+              <li><span class="dot"></span><b>chezgerard.store</b><em>Laravel · Flutter</em></li>
+              <li><span class="dot"></span><b>ochurch.net</b><em>SaaS</em></li>
+              <li><span class="dot"></span><b>controleplus.net</b><em>SaaS</em></li>
+              <li><span class="dot"></span><b>clc-ebcenter.com</b><em>Multilingue</em></li>
+              <li><span class="dot"></span><b>fondation-fsa-ci.org</b><em>Institutionnel</em></li>
+              <li><span class="dot"></span><b>jomion.net</b><em>Laravel</em></li>
+            </ul>
+            <p class="board__foot">+ 4 autres sites suivis et maintenus</p>
           </div>
 
-          <ul class="dash__rows">
-            <li><span class="mono">Statut</span><span class="badge badge--vert"><span class="dot dot--vert"></span> Disponible</span></li>
-            <li><span class="mono">Rôle</span><span>Développeur Full-Stack Laravel</span></li>
-            <li><span class="mono">Base</span><span>Abidjan — Côte d’Ivoire</span></li>
-            <li><span class="mono">Aussi</span><span>Formateur chez CLC</span></li>
-          </ul>
-
-          <p class="mono dash__sub">Plateformes en ligne</p>
-          <ul class="dash__sites">
-            <li><span class="dot dot--vert"></span> jomion.net</li>
-            <li><span class="dot dot--vert"></span> ochurch.net</li>
-            <li><span class="dot dot--vert"></span> controlplus.net</li>
-            <li><span class="dot dot--vert"></span> wilson-groupservice.com</li>
-          </ul>
-
-          <p class="dash__foot mono">Suivies et maintenues en continu</p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Bande de repères (aucun chiffre : des faits) -->
-    <div class="strip">
-      <div class="container strip__inner mono">
-        <span><span class="dot dot--caramel"></span> En activité depuis 2022</span>
-        <span><span class="dot dot--caramel"></span> Freelance &amp; missions</span>
-        <span><span class="dot dot--caramel"></span> Code propre — standards PSR</span>
-        <span><span class="dot dot--caramel"></span> Formation &amp; transmission</span>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         COMPÉTENCES — grille d'atouts avec icônes
-         ============================================================ -->
-    <section class="section" id="competences">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Compétences</p>
-          <h2>Tout ce qu’il faut pour livrer<br>une application <em class="accent-italic">complète</em></h2>
-          <p class="section-sub">Six domaines travaillés au quotidien, du serveur à l’interface — et jusqu’à la transmission.</p>
-        </header>
-
-        <div class="cards">
-          <article class="card reveal">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
-            </span>
-            <h3>Back-end</h3>
-            <p>PHP &amp; Laravel — Blade, Eloquent, logique métier robuste côté serveur.</p>
-          </article>
-
-          <article class="card reveal" data-delay="60">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>
-            </span>
-            <h3>Front-end</h3>
-            <p>HTML5, CSS3, Bootstrap, jQuery/AJAX — des interfaces vives et responsives.</p>
-          </article>
-
-          <article class="card reveal" data-delay="120">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
-            </span>
-            <h3>Bases de données</h3>
-            <p>MySQL — modélisation Merise, requêtes optimisées, indexation.</p>
-          </article>
-
-          <article class="card reveal" data-delay="180">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7l9 5 9-5-9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>
-            </span>
-            <h3>Architecture</h3>
-            <p>MVC, Repository Pattern, standards PSR — un code lisible et durable.</p>
-          </article>
-
-          <article class="card reveal" data-delay="240">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><path d="M8 12h8"/></svg>
-            </span>
-            <h3>APIs</h3>
-            <p>Conception REST, sécurisation des échanges, intégrations tierces.</p>
-          </article>
-
-          <article class="card reveal" data-delay="300">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 10 5-10 5L2 8l10-5Z"/><path d="M6 10.5V16c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5"/><path d="M22 8v6"/></svg>
-            </span>
-            <h3>Pédagogie</h3>
-            <p>Formation et vulgarisation technique auprès d’apprenants développeurs.</p>
-          </article>
+          <div class="float float--a">
+            <span class="float__ic"><svg class="ic"><use href="#i-calendar"/></svg></span>
+            <span><small>En activité depuis</small><strong>2022</strong></span>
+          </div>
+          <div class="float float--b">
+            <span class="float__ic float__ic--fill"><svg class="ic"><use href="#i-rocket"/></svg></span>
+            <span><small>En production</small><strong>10 plateformes</strong></span>
+          </div>
         </div>
-
-        <p class="tools mono reveal">Outils quotidiens — Git · VS&nbsp;Code · Postman · Composer · Trello</p>
       </div>
     </section>
 
     <!-- ============================================================
-         APPROCHE — trois étapes numérotées
+         PILIERS (chevauchent le héros)
          ============================================================ -->
-    <section class="section section--panel" id="approche">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Approche</p>
-          <h2>Une méthode simple,<br>qui va jusqu’au <em class="accent-italic">bout</em></h2>
-        </header>
+    <section class="wrap pillars" aria-label="Ce que je fais">
+      <article class="card pillar rv">
+        <span class="pillar__ic"><svg class="ic"><use href="#i-code"/></svg></span>
+        <h3>Applications web &amp; SaaS</h3>
+        <p>Plateformes métiers, back-offices et produits SaaS rapides, pensés pour l’usage quotidien.</p>
+      </article>
+      <article class="card pillar rv" style="--d:1">
+        <span class="pillar__ic"><svg class="ic"><use href="#i-mobile"/></svg></span>
+        <h3>Applications mobiles</h3>
+        <p>Applications Flutter connectées à l’API, capables de fonctionner même hors connexion.</p>
+      </article>
+      <article class="card pillar rv" style="--d:2">
+        <span class="pillar__ic"><svg class="ic"><use href="#i-rocket"/></svg></span>
+        <h3>Mise en ligne &amp; suivi</h3>
+        <p>Déploiement, hébergement, correctifs et évolutions : je reste là après la livraison.</p>
+      </article>
+    </section>
 
+    <!-- ============================================================
+         BANDEAU DÉFILANT
+         ============================================================ -->
+    <section class="band" aria-label="Plateformes en ligne">
+      <div class="band__track">
+        <ul>
+          <li>chezgerard.store</li><li>ochurch.net</li><li>controleplus.net</li><li>jomion.net</li><li>clc-ebcenter.com</li><li>fondation-fsa-ci.org</li><li>lullygraceprod.com</li><li>setomafrik.com</li><li>wilsongroup-services.com</li><li>fsmivoirienne.com</li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>chezgerard.store</li><li>ochurch.net</li><li>controleplus.net</li><li>jomion.net</li><li>clc-ebcenter.com</li><li>fondation-fsa-ci.org</li><li>lullygraceprod.com</li><li>setomafrik.com</li><li>wilsongroup-services.com</li><li>fsmivoirienne.com</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         À PROPOS
+         ============================================================ -->
+    <section class="sec" id="apropos">
+      <div class="wrap split">
+        <div class="about__vis rv">
+          <div class="codecard">
+            <div class="codecard__bar"><i></i><i></i><i></i><span>routes/web.php — exemple</span></div>
+<pre><span class="k">Route</span>::<span class="f">middleware</span>([<span class="s">'auth'</span>, <span class="s">'abonne'</span>])
+    -><span class="f">group</span>(<span class="k">function</span> () {
+        <span class="k">Route</span>::<span class="f">get</span>(<span class="s">'/ventes'</span>, ...);
+        <span class="k">Route</span>::<span class="f">get</span>(<span class="s">'/stock'</span>, ...);
+        <span class="k">Route</span>::<span class="f">get</span>(<span class="s">'/caisses'</span>, ...);
+    });</pre>
+          </div>
+          <div class="about__small">
+            <span class="about__small-ic"><svg class="ic"><use href="#i-mobile"/></svg></span>
+            <span><b>Web + mobile</b><small>une seule API</small></span>
+          </div>
+          <div class="about__badge">
+            <span><strong data-years>4</strong><small>ans<br>d’expérience</small></span>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow rv">À propos</p>
+          <h2 class="h2 rv" style="--d:1">Transformer vos besoins en <span class="scribble">outils fiables</span></h2>
+          <p class="lead rv" style="--d:2">
+            Je suis Ogbon Moubarack, développeur full-stack basé à Abidjan. Depuis 2022,
+            je construis des applications complètes — du serveur à l’écran — et je les
+            accompagne jusqu’en production. Je suis aussi formateur&nbsp;: transmettre fait
+            partie de ma façon de travailler.
+          </p>
+          <ul class="checks rv" style="--d:3">
+            <li><span><svg class="ic"><use href="#i-layers"/></svg></span>Code propre et structuré (MVC, standards PSR), facile à faire évoluer</li>
+            <li><span><svg class="ic"><use href="#i-zap"/></svg></span>Interfaces rapides : chargements asynchrones, pages légères</li>
+            <li><span><svg class="ic"><use href="#i-shield"/></svg></span>Sécurité par défaut : validation, autorisations, données protégées</li>
+          </ul>
+          <div class="rv" style="--d:4"><a class="btn btn--primary" href="#parcours">Voir mon parcours <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CHIFFRES
+         ============================================================ -->
+    <section class="stats">
+      <div class="wrap">
+        <dl class="stats__grid">
+          <div class="rv"><dt>Plateformes en production</dt><dd><span data-count="10">10</span></dd></div>
+          <div class="rv" style="--d:1"><dt>Produits en développement</dt><dd><span data-count="3">3</span></dd></div>
+          <div class="rv" style="--d:2"><dt>Années d’activité</dt><dd><span data-count="4" data-years>4</span></dd></div>
+          <div class="rv" style="--d:3"><dt>Entreprises &amp; centres</dt><dd><span data-count="4">4</span></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RÉALISATIONS
+         ============================================================ -->
+    <section class="sec sec--cream" id="realisations">
+      <div class="wrap">
+        <div class="sec-head">
+          <div>
+            <p class="eyebrow rv">Réalisations</p>
+            <h2 class="h2 rv" style="--d:1">En ligne, <span class="scribble">utilisées au quotidien</span></h2>
+          </div>
+          <p class="sec-head__aside rv" style="--d:2">Cliquez : chaque plateforme est réelle, déployée et accessible.</p>
+        </div>
+
+        <div class="projects">
+          <a class="proj proj--feat rv" href="https://chezgerard.store" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>chezgerard.store</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Web + mobile</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Chez Gérard</h3>
+              <p>Gestion commerciale multi-magasins : ventes, stock, dépôt et caisses suivis en temps réel, sur le web et sur l’application mobile.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span><span>Flutter</span><span>API REST</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:1" href="https://ochurch.net" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>ochurch.net</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">SaaS</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>O’Church</h3>
+              <p>Plateforme SaaS de gestion d’église : membres, finances, présences et SMS.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span><span>SMS</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:2" href="https://controleplus.net" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>controleplus.net</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">SaaS</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Contrôle +</h3>
+              <p>Plateforme de gestion en ligne par abonnement, développée et mise en production pour ODAM Consulting.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span><span>Abonnements</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" href="http://www.clc-ebcenter.com/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>clc-ebcenter.com</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Multilingue</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>CLC – Cadryl’s Learning Center</h3>
+              <p>Site multilingue du centre de formation, avec back-office d’administration des contenus.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span><span>i18n</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:1" href="https://fondation-fsa-ci.org/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>fondation-fsa-ci.org</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Institutionnel</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Fondation FSA</h3>
+              <p>Site institutionnel de la fondation, avec espace d’administration des actions et des partenaires.</p>
+              <p class="tags"><span>Laravel</span><span>Tailwind</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:2" href="https://jomion.net" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>jomion.net</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Plateforme</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Jomion</h3>
+              <p>Plateforme web développée et mise en production pour ODAM Consulting.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" href="https://lullygraceprod.com/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>lullygraceprod.com</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Espace membre</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Lully Grace Production</h3>
+              <p>Site de la maison de production, avec espace membre et gestion des contenus.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:1" href="https://setomafrik.com/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>setomafrik.com</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Vitrine</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>SETOM AFRIK</h3>
+              <p>Site vitrine d’une entreprise de BTP et gros œuvre basée à Abidjan.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" style="--d:2" href="https://wilsongroup-services.com/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>wilsongroup-services.com</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Institutionnel</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>Wilson Group Services</h3>
+              <p>Site institutionnel développé et mis en ligne pour ODAM Consulting.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+
+          <a class="proj rv" href="https://fsmivoirienne.com/" target="_blank" rel="noopener">
+            <div class="proj__bar"><span class="proj__dots"><i></i><i></i><i></i></span><span class="proj__url"><svg class="ic"><use href="#i-lock"/></svg>fsmivoirienne.com</span></div>
+            <div class="proj__body">
+              <div class="proj__meta"><span class="proj__chip">Site web</span><span class="proj__live"><span class="dot"></span>En ligne</span></div>
+              <h3>FSMI</h3>
+              <p>Site web développé et mis en production dans le cadre de mes missions ODAM Consulting.</p>
+              <p class="tags"><span>Laravel</span><span>MySQL</span></p>
+              <span class="proj__go">Visiter le site <svg class="ic"><use href="#i-arrow"/></svg></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EN COURS DE DÉVELOPPEMENT
+         ============================================================ -->
+    <section class="sec sec--blush">
+      <div class="wrap split split--wide">
+        <div>
+          <p class="eyebrow rv">En cours de développement</p>
+          <h2 class="h2 rv" style="--d:1">Ce que je <span class="scribble">construis</span> en ce moment</h2>
+          <p class="hand build__hand rv" style="--d:2">#Toujours un projet sur l’établi</p>
+          <p class="lead rv" style="--d:3">Trois produits personnels, trois stacks différentes, une même exigence : un logiciel solide, rapide et agréable à utiliser.</p>
+        </div>
+
+        <ul class="builds">
+          <li class="rv">
+            <span class="builds__ic"><svg class="ic"><use href="#i-wrench"/></svg></span>
+            <span>
+              <b>AutoSmart <em class="wip">en cours</em></b>
+              <span>Assistant de mobilité et d’entretien automobile : web, API et application mobile hors-ligne.</span>
+              <span class="tags"><span>Laravel</span><span>Flutter</span><span>Offline-first</span></span>
+            </span>
+          </li>
+          <li class="rv" style="--d:1">
+            <span class="builds__ic"><svg class="ic"><use href="#i-hammer"/></svg></span>
+            <span>
+              <b>Sora <em class="wip">en cours</em></b>
+              <span>Gestion et marketplace pour ateliers de couture et boutiques, avec applis client et pro.</span>
+              <span class="tags"><span>Go</span><span>React</span><span>TypeScript</span><span>Flutter</span></span>
+            </span>
+          </li>
+          <li class="rv" style="--d:2">
+            <span class="builds__ic"><svg class="ic"><use href="#i-zap"/></svg></span>
+            <span>
+              <b>SignAlert <em class="wip">en cours</em></b>
+              <span>Application web personnelle actuellement en construction.</span>
+              <span class="tags"><span>Application web</span></span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         COMPÉTENCES (section sombre)
+         ============================================================ -->
+    <section class="dark" id="competences">
+      <svg class="dark__deco" aria-hidden="true"><use href="#i-code"/></svg>
+      <div class="wrap sec">
+        <div class="split split--skills">
+          <div>
+            <p class="eyebrow eyebrow--light rv">Compétences</p>
+            <h2 class="h2 h2--light rv" style="--d:1">Tout ce qu’il faut pour livrer <span class="scribble scribble--gold">une application complète</span></h2>
+            <p class="lead lead--light rv" style="--d:2">Un seul interlocuteur, de la base de données à l’écran — et jusqu’à la formation de vos équipes.</p>
+            <div class="rv" style="--d:3"><a class="btn btn--gold" href="#contact">Discutons de votre projet <svg class="ic"><use href="#i-arrow"/></svg></a></div>
+          </div>
+
+          <ul class="skills">
+            <li class="rv skills__wide"><span><svg class="ic"><use href="#i-code"/></svg></span><p><b>Back-end</b>PHP, Laravel, Blade, Eloquent — et Go pour les services performants</p></li>
+            <li class="rv" style="--d:1"><span><svg class="ic"><use href="#i-globe"/></svg></span><p><b>Front-end</b>HTML, CSS, Tailwind, Bootstrap, jQuery/AJAX, React</p></li>
+            <li class="rv" style="--d:2"><span><svg class="ic"><use href="#i-mobile"/></svg></span><p><b>Mobile</b>Flutter, Dart, mode hors-ligne</p></li>
+            <li class="rv" style="--d:3"><span><svg class="ic"><use href="#i-db"/></svg></span><p><b>Données</b>MySQL, MariaDB, modélisation Merise</p></li>
+            <li class="rv" style="--d:4"><span><svg class="ic"><use href="#i-plug"/></svg></span><p><b>APIs</b>REST, JWT, intégrations SMS</p></li>
+            <li class="rv" style="--d:5"><span><svg class="ic"><use href="#i-layers"/></svg></span><p><b>Architecture</b>MVC, Repository, standards PSR</p></li>
+            <li class="rv" style="--d:6"><span><svg class="ic"><use href="#i-grad"/></svg></span><p><b>Formation</b>Encadrement d’apprenants développeurs</p></li>
+          </ul>
+        </div>
+        <p class="tools rv">Outils du quotidien — Git · VS Code · Postman · Composer · Trello</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MÉTHODE
+         ============================================================ -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="center-head">
+          <p class="eyebrow rv">Méthode</p>
+          <h2 class="h2 rv" style="--d:1">Une méthode simple, qui va <span class="scribble">jusqu’au bout</span></h2>
+        </div>
         <ol class="steps">
-          <li class="step reveal">
-            <span class="step__num">1</span>
-            <h3>Cadrer</h3>
-            <p>Comprendre le besoin réel, définir le périmètre et modéliser les données avant d’écrire la moindre ligne.</p>
-          </li>
-          <li class="step reveal" data-delay="80">
-            <span class="step__num">2</span>
-            <h3>Construire</h3>
-            <p>Développer proprement — architecture MVC, APIs sécurisées, interfaces dynamiques — avec des points d’étape réguliers.</p>
-          </li>
-          <li class="step reveal" data-delay="160">
-            <span class="step__num">3</span>
-            <h3>Mettre en production</h3>
-            <p>Déployer, suivre, corriger, faire évoluer. Une application n’est terminée que lorsqu’elle tourne et qu’on peut compter sur elle.</p>
-          </li>
+          <li class="card step rv"><span class="step__n">01</span><span class="step__ic"><svg class="ic"><use href="#i-search"/></svg></span><h3>Comprendre</h3><p>Le besoin réel, les utilisateurs, les priorités. Je modélise les données avant d’écrire une ligne.</p></li>
+          <li class="card step rv" style="--d:1"><span class="step__n">02</span><span class="step__ic"><svg class="ic"><use href="#i-code"/></svg></span><h3>Construire</h3><p>Développement par étapes avec des démonstrations régulières : vous voyez le produit avancer.</p></li>
+          <li class="card step rv" style="--d:2"><span class="step__n">03</span><span class="step__ic"><svg class="ic"><use href="#i-rocket"/></svg></span><h3>Mettre en ligne</h3><p>Déploiement, configuration, nom de domaine, données réelles : le produit est en service.</p></li>
+          <li class="card step rv" style="--d:3"><span class="step__n">04</span><span class="step__ic"><svg class="ic"><use href="#i-wrench"/></svg></span><h3>Faire vivre</h3><p>Suivi, correctifs, nouvelles fonctionnalités. Je reste disponible après la livraison.</p></li>
         </ol>
       </div>
     </section>
 
     <!-- ============================================================
-         PROJETS — cartes façon fenêtre de navigateur
+         PARCOURS
          ============================================================ -->
-    <section class="section" id="projets">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Projets</p>
-          <h2>En ligne, utilisés<br><em class="accent-italic">au quotidien</em></h2>
-          <p class="section-sub">Cliquez : ces plateformes sont réelles, déployées et accessibles.</p>
-        </header>
-
-        <div class="projects">
-
-          <a class="project reveal" href="https://ochurch.net" target="_blank" rel="noopener">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">ochurch.net</span></span>
-            <div class="project__body">
-              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
-              <h3>O’Church</h3>
-              <p>Plateforme SaaS de gestion d’église — membres, finances, présences, SMS.</p>
-              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
-            </div>
-          </a>
-
-          <a class="project reveal" data-delay="60" href="https://jomion.net" target="_blank" rel="noopener">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">jomion.net</span></span>
-            <div class="project__body">
-              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
-              <h3>Jomion</h3>
-              <p>Plateforme web développée et mise en production pour ODAM Consulting.</p>
-              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
-            </div>
-          </a>
-
-          <a class="project reveal" data-delay="120" href="https://controlplus.net" target="_blank" rel="noopener">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">controlplus.net</span></span>
-            <div class="project__body">
-              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
-              <h3>ControlPlus</h3>
-              <p>Plateforme web développée et mise en production pour ODAM Consulting.</p>
-              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
-            </div>
-          </a>
-
-          <a class="project reveal" data-delay="180" href="https://wilson-groupservice.com" target="_blank" rel="noopener">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">wilson-groupservice.com</span></span>
-            <div class="project__body">
-              <span class="badge badge--vert"><span class="dot dot--vert"></span> En ligne</span>
-              <h3>Wilson Group Service</h3>
-              <p>Site institutionnel développé et mis en ligne pour ODAM Consulting.</p>
-              <p class="mono project__meta">Laravel · MySQL <span class="project__arrow">↗</span></p>
-            </div>
-          </a>
-
-          <article class="project reveal" data-delay="240">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">fsmi</span></span>
-            <div class="project__body">
-              <span class="badge badge--neutre">Livré</span>
-              <h3>FSMI</h3>
-              <p>Projet web développé et livré dans le cadre de mes missions ODAM Consulting.</p>
-              <p class="mono project__meta">Laravel · MySQL</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-delay="300">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">barakadeal</span></span>
-            <div class="project__body">
-              <span class="badge badge--neutre">Produit personnel</span>
-              <h3>BarakaDeal</h3>
-              <p>Application web conçue et développée de A à Z, en autonomie complète.</p>
-              <p class="mono project__meta">Application web</p>
-            </div>
-          </article>
-
-          <article class="project reveal" data-delay="360">
-            <span class="project__bar"><i></i><i></i><i></i><span class="mono">signalert</span></span>
-            <div class="project__body">
-              <span class="badge badge--wip"><span class="dot dot--caramel"></span> En cours de développement</span>
-              <h3>SignAlert</h3>
-              <p>Application web personnelle actuellement en construction.</p>
-              <p class="mono project__meta">Application web</p>
-            </div>
-          </article>
-
+    <section class="sec sec--cream" id="parcours">
+      <div class="wrap">
+        <div class="center-head">
+          <p class="eyebrow rv">Parcours</p>
+          <h2 class="h2 rv" style="--d:1">Expérience &amp; <span class="scribble">formation</span></h2>
         </div>
-      </div>
-    </section>
 
-    <!-- ============================================================
-         PARCOURS — expérience & formation
-         ============================================================ -->
-    <section class="section section--panel" id="parcours">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="eyebrow">Parcours</p>
-          <h2>Expérience<br>&amp; <em class="accent-italic">formation</em></h2>
-        </header>
-
-        <div class="timelinewrap">
+        <div class="cv">
           <ol class="timeline">
-            <li class="tl reveal">
-              <p class="mono tl__date">juil. 2026 — aujourd’hui</p>
+            <li class="rv">
+              <span class="tl__date">juil. 2026 — aujourd’hui</span>
               <h3>Consultant en informatique</h3>
               <p class="tl__org">CLC – Cadryl’s Learning Center · Abidjan (hybride)</p>
-              <p class="tl__desc">Applications web complètes, conception de logiciels, encadrement d’apprenants développeurs, animation de communauté.</p>
+              <p>Applications web complètes, conception de logiciels, encadrement d’apprenants développeurs, animation de communauté.</p>
             </li>
-            <li class="tl reveal" data-delay="70">
-              <p class="mono tl__date">2026 — aujourd’hui</p>
+            <li class="rv" style="--d:1">
+              <span class="tl__date">2026 — aujourd’hui</span>
               <h3>Développeur full-stack</h3>
               <p class="tl__org">ODAM Consulting · Abidjan</p>
-              <p class="tl__desc">Sites et plateformes sur mesure, de la mise en production à la maintenance évolutive, avec un suivi client direct.</p>
+              <p>Sites et plateformes sur mesure, de la mise en production à la maintenance évolutive, avec un suivi client direct.</p>
             </li>
-            <li class="tl reveal" data-delay="140">
-              <p class="mono tl__date">janv. 2023 — juil. 2025</p>
+            <li class="rv" style="--d:2">
+              <span class="tl__date">janv. 2023 — juil. 2025</span>
               <h3>Développeur full-stack Laravel</h3>
               <p class="tl__org">Biwari · Abidjan</p>
-              <p class="tl__desc">Applications web d’entreprise&nbsp;; APIs REST sécurisées et optimisation des bases de données.</p>
+              <p>Applications web d’entreprise, APIs REST sécurisées et optimisation des bases de données.</p>
             </li>
-            <li class="tl reveal" data-delay="210">
-              <p class="mono tl__date">juil. 2022 — janv. 2023</p>
+            <li class="rv" style="--d:3">
+              <span class="tl__date">juil. 2022 — janv. 2023</span>
               <h3>Stagiaire développeur web</h3>
               <p class="tl__org">Dinamik Lab · Abidjan</p>
-              <p class="tl__desc">Premiers projets en équipe&nbsp;: fonctionnalités, correctifs et versionnement du code avec Git.</p>
+              <p>Premiers projets en équipe : fonctionnalités, correctifs et versionnement du code avec Git.</p>
             </li>
           </ol>
 
-          <aside class="degrees reveal" data-delay="120">
-            <p class="mono degrees__head">Formation</p>
+          <aside class="card edu rv" style="--d:1">
+            <span class="edu__ic"><svg class="ic"><use href="#i-grad"/></svg></span>
+            <h3>Formation</h3>
             <ul>
-              <li>
-                <strong>Licence professionnelle — Génie Logiciel</strong>
-                <span>ITES – Institut de Technologies et Spécialités, Abidjan</span>
-                <span class="mono">2021 – 2022</span>
-              </li>
-              <li>
-                <strong>BTS — Informatique, Développeur d’Applications</strong>
-                <span>ITES – Institut de Technologies et Spécialités, Abidjan</span>
-                <span class="mono">2021 – 2022</span>
-              </li>
-              <li>
-                <strong>Baccalauréat — Série D</strong>
-                <span>Groupe Scolaire Nadreau La Source, Abidjan</span>
-                <span class="mono">2018 – 2019</span>
-              </li>
+              <li><b>Licence professionnelle — Génie Logiciel</b><span>ITES – Institut de Technologies et Spécialités, Abidjan</span><em>2021 – 2022</em></li>
+              <li><b>BTS — Informatique, Développeur d’Applications</b><span>ITES – Institut de Technologies et Spécialités, Abidjan</span><em>2021 – 2022</em></li>
+              <li><b>Baccalauréat — Série D</b><span>Groupe Scolaire Nadreau La Source, Abidjan</span><em>2018 – 2019</em></li>
             </ul>
           </aside>
         </div>
+
+        <figure class="quote rv">
+          <span class="quote__mark" aria-hidden="true">“</span>
+          <blockquote>Une application n’est terminée que lorsqu’elle tourne, et qu’on peut compter sur elle.</blockquote>
+          <figcaption><span class="quote__line"></span><span><b>Ogbon Moubarack</b><span class="hand">Développeur full-stack</span></span></figcaption>
+        </figure>
       </div>
     </section>
 
     <!-- ============================================================
-         APPEL À L'ACTION FINAL + CONTACT
+         CONTACT
          ============================================================ -->
-    <section class="cta" id="contact">
-      <div class="container cta__box reveal">
-        <h2>Prêt à lancer<br>votre <em class="accent-italic">projet</em>&nbsp;?</h2>
-        <p>Une plateforme à construire, un site à moderniser ou une équipe à former&nbsp;— parlons-en, je réponds vite.</p>
-
-        <div class="cta__actions">
-          <a class="btn btn--clair" href="mailto:moubarackogbon2018@gmail.com">moubarackogbon2018@gmail.com</a>
-          <a class="btn btn--ligne" href="https://www.linkedin.com/in/moubarack-ogbon-12202124a/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact__box rv">
+          <div class="blob blob--gold contact__blob" aria-hidden="true"></div>
+          <div class="contact__copy">
+            <p class="eyebrow eyebrow--light">Contact</p>
+            <h2 class="h2 h2--light">Prêt à lancer votre <span class="scribble scribble--gold">projet</span>&nbsp;?</h2>
+            <p class="hand contact__hand">#Parlons-en, je réponds vite</p>
+            <p class="lead lead--light">Une plateforme à construire, un site à moderniser ou une équipe à former : écrivez-moi.</p>
+            <div class="contact__cta">
+              <a class="btn btn--gold" href="mailto:moubarackogbon2018@gmail.com">Écrire un e-mail <svg class="ic"><use href="#i-mail"/></svg></a>
+              <a class="btn btn--light" href="https://www.linkedin.com/in/moubarack-ogbon-12202124a/" target="_blank" rel="noopener">LinkedIn <svg class="ic"><use href="#i-out"/></svg></a>
+            </div>
+          </div>
+          <ul class="contact__list">
+            <li><span><svg class="ic"><use href="#i-mail"/></svg></span><a href="mailto:moubarackogbon2018@gmail.com">moubarackogbon2018@gmail.com</a></li>
+            <li><span><svg class="ic"><use href="#i-phone"/></svg></span><a href="tel:+2250574388110">+225 05 74 38 81 10</a></li>
+            <li><span><svg class="ic"><use href="#i-phone"/></svg></span><a href="tel:+2250143180769">+225 01 43 18 07 69</a></li>
+            <li><span><svg class="ic"><use href="#i-pin"/></svg></span>Marcory, Abidjan — Côte d’Ivoire</li>
+          </ul>
         </div>
-
-        <p class="cta__tel mono">
-          +225&nbsp;05&nbsp;74&nbsp;38&nbsp;81&nbsp;10&nbsp;&nbsp;·&nbsp;&nbsp;+225&nbsp;01&nbsp;43&nbsp;18&nbsp;07&nbsp;69&nbsp;&nbsp;·&nbsp;&nbsp;Abobo, Abidjan — Côte d’Ivoire
-        </p>
       </div>
     </section>
   </main>
@@ -395,20 +572,28 @@
        PIED DE PAGE
        ============================================================ -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <a class="brand" href="#haut"><span class="brand__mark">OM</span> Ogbon&nbsp;Moubarack</a>
-      <nav class="footer__nav mono" aria-label="Navigation pied de page">
+    <div class="wrap footer__in">
+      <a class="brand brand--light" href="#haut">
+        <span class="brand__mark">OM</span>
+        <span class="brand__txt">
+          <span class="brand__kicker">Développeur full-stack</span>
+          <span class="brand__name">Ogbon <span>Moubarack</span></span>
+        </span>
+      </a>
+      <nav class="footer__nav" aria-label="Pied de page">
+        <a href="#apropos">À propos</a>
+        <a href="#realisations">Réalisations</a>
         <a href="#competences">Compétences</a>
-        <a href="#approche">Approche</a>
-        <a href="#projets">Projets</a>
         <a href="#parcours">Parcours</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <p class="mono footer__copy">© <span id="annee">2026</span> Ogbon Moubarack — Abidjan</p>
+    </div>
+    <div class="wrap footer__bottom">
+      <span>© <span id="annee">2026</span> Ogbon Moubarack — Abidjan</span>
+      <span class="hand">#Du code qui tourne en production</span>
     </div>
   </footer>
 
-  <!-- Scripts : jQuery (local) puis la logique du site -->
-  <script src="js/jquery.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
